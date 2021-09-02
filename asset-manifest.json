@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/beer-api/static/css/main.92ef1ad8.chunk.css",
+    "main.js": "/beer-api/static/js/main.055a6475.chunk.js",
+    "main.js.map": "/beer-api/static/js/main.055a6475.chunk.js.map",
+    "runtime-main.js": "/beer-api/static/js/runtime-main.f5694ad2.js",
+    "runtime-main.js.map": "/beer-api/static/js/runtime-main.f5694ad2.js.map",
+    "static/js/2.ca821a8b.chunk.js": "/beer-api/static/js/2.ca821a8b.chunk.js",
+    "static/js/2.ca821a8b.chunk.js.map": "/beer-api/static/js/2.ca821a8b.chunk.js.map",
+    "static/js/3.751e0985.chunk.js": "/beer-api/static/js/3.751e0985.chunk.js",
+    "static/js/3.751e0985.chunk.js.map": "/beer-api/static/js/3.751e0985.chunk.js.map",
+    "index.html": "/beer-api/index.html",
+    "static/css/main.92ef1ad8.chunk.css.map": "/beer-api/static/css/main.92ef1ad8.chunk.css.map",
+    "static/js/2.ca821a8b.chunk.js.LICENSE.txt": "/beer-api/static/js/2.ca821a8b.chunk.js.LICENSE.txt",
+    "static/media/sorter.121c4c9d.svg": "/beer-api/static/media/sorter.121c4c9d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f5694ad2.js",
+    "static/js/2.ca821a8b.chunk.js",
+    "static/css/main.92ef1ad8.chunk.css",
+    "static/js/main.055a6475.chunk.js"
+  ]
+}
