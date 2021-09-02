@@ -1,0 +1,20 @@
+.filters input  {
+    padding: 10px 5px 10px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(86, 143, 168, 0.58);
+    outline-color: rgba(64, 176, 229, 0.58);
+}
+
+.submit {
+    padding: 8px 30px;
+    border: 1px solid rgba(16, 73, 148, 0.43);
+    background: rgba(26, 107, 229, 0.55);
+    border-radius: 4px;
+    font-size: 16px;
+    color: #343131;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background: rgba(94, 150, 224, 0.91);
+}

@@ -1,0 +1,15 @@
+.beer {
+    display: flex;
+}
+
+.description {
+    width: 400px;
+    margin-left: 150px;
+}
+
+.description div {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}

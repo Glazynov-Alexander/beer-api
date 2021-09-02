@@ -1,0 +1,65 @@
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.TableBeers > div {
+    margin: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.headers  th {
+    border-right: 2px solid #706e6e47;
+    background: rgba(129, 128, 128, 0.6);
+    padding: 10px;
+}
+
+.headers th:first-child {
+    border-top-left-radius: 4px;
+}
+
+.headers th:last-child {
+    border-top-right-radius: 4px;
+    border-right: none;
+}
+
+.body {
+    border-bottom: 1px solid #646363;
+}
+
+.body td {
+    border-right: 2px solid #706e6e47;
+}
+
+.body td:first-child {
+    background: rgba(189, 187, 187, 0.5);
+}
+
+.body td:last-child {
+    /*background: rgba(189, 187, 187, 0.5);*/
+    border-right: .5px solid #706e6e47;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.TableBeers > svg {
+    width: 25px;
+}
+
+.ascend {
+    transform: rotate(180deg);
+    fill: #f5ab24;
+}
+
+.descend {
+    transform: rotate(360deg);
+    fill: #f5ab24;
+}
