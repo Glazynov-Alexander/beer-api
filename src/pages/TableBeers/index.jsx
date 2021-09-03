@@ -8,11 +8,11 @@ import "./styles.css";
 
 let initialBeers = [];
 
-function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState }) {
+function TableBeers({ beers, query, getBeers, setBeers, setQueryState }) {
   const history = useHistory();
   const [filters, setFilters] = useState({ ...query });
   const [sorting, setSorter] = useState("");
-    const pageQuery = {...query}
+  const pageQuery = {...query}
   const fields = [
     "abv_gt",
     "das",
@@ -48,6 +48,11 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
       //eslint-disable-next-line
   }, [query]);
 
+  useEffect(() => {
+      getBeers(query);
+      //eslint-disable-next-line
+  }, []);
+
   const setValueFilter = useCallback(
     (field, value) => {
       if (value) {
@@ -59,21 +64,47 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
       setQueryState({...bad})
       setFilters({...bad});
       //eslint-disable-next-line
-    }, [filters]);
+  }, [filters]);
 
   const data = [
-    ["ABV", "ABV", { role: "style" }],
-    ...beers.map((beer) => [beer.name, beer.abv, "silver"]),
+    ["ABV", "ABV", { role: "style", link: "" }],
+    ...beers.map((beer) => [beer.name, beer.abv, "silver" ]),
   ];
 
-  return (
+  const handler = function (e, events, chart) {
+      const parts = e.targetID.split("#");
+      if(parts.includes("bar")) {
+          console.log("parts", parts)
+          let idx = parts[parts.indexOf("bar") + 2];
+          idx = parseInt(idx);
+          beers[idx] && history.push(`/beer-api/beerId=${beers[idx].id}`);
+          events.removeAllListeners(chart)
+      }
+  };
+
+  return beers.length ? (
     <div className="TableBeers">
       <Chart
         className={"schedule"}
         chartType="ColumnChart"
         data={data}
-        options={{ legend: "none" }}
-        width="80%"
+        chartEvents={[
+            {
+                eventName: "ready",
+                callback: async ({ chartWrapper, google }) => {
+                   await google.visualization.events.addListener(
+                        chartWrapper.getChart(),
+                        "click",
+                       (e) =>handler(e, google.visualization.events, chartWrapper.getChart())
+                    );
+                }
+            }
+        ]}
+        options={{
+            legend: "none",
+            curveType: "function",
+            enableInteractivity: true }}
+        width="90%"
         height="400px"
       />
 
@@ -91,7 +122,6 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
         rowsPerPage={+pageQuery["per_page"] || 25}
         getBeers={getBeers}
         page={+pageQuery.page || 1}
-        setQuery={setQuery}
       />
 
       <ReactLogo onClick={sorter} className={sorting}/>
@@ -100,8 +130,8 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
           <tr>
             <th width={250}>Name</th>
             <th width={250}>Tagline</th>
-            <th width={90}>Photo</th>
-            <th width={150}>ABV</th>
+            <th width={80}>Photo</th>
+            <th width={75}>ABV</th>
           </tr>
         </thead>
         <tbody>
@@ -111,11 +141,9 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
                     <h3>{item.name}</h3>
                   </td>
                   <td>{item.tagline}</td>
-                  <td style={{ padding: 15 }}>
+                  <td >
                     <img
-                      onClick={() => history.push(`beer-api/beerId=${item.id}`)}
-                      width={500}
-                      height={500}
+                      onClick={() => history.push(`/beer-api/beerId=${item.id}`)}
                       src={item.image_url}
                       alt={item.name}
                     />
@@ -126,7 +154,7 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
         </tbody>
       </table>
     </div>
-  );
+  ) : <div>beers none <a href={"/beer-api"}>initial</a></div>
 }
 
 export default TableBeers;

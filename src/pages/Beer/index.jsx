@@ -21,7 +21,7 @@ function Beer() {
 
   return beer.map((item) => (
       <div className={"beer"} key={item.id}>
-        <img width={200} height={100} src={item.image_url} alt={item.name} />
+        <img width={200} src={item.image_url} alt={item.name} />
         <div className={"description"}>
           <div><h3>Name:</h3><span>{item.name}</span></div>
           <div><h3>abv:</h3><span>{item.abv}</span></div>

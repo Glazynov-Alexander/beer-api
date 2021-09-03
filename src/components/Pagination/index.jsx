@@ -6,7 +6,6 @@ function Pagination({
   rowsPerPage,
   page,
   beers,
-  setQuery,
   getBeers,
   filters,
   rowsPerPageOptions
@@ -16,8 +15,7 @@ function Pagination({
 
   const setPerPage = (field, row) => {
       changeShow(false)
-      setQuery(field, row)
-      getBeers({...filters, [field]: row})
+      getBeers({...filters, page:1, [field]: row})
   }
 
   const pages = Array.from(

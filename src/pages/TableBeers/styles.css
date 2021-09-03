@@ -13,10 +13,14 @@ table {
     user-select: none;
 }
 
+.schedule {
+    margin: auto;
+}
+
 .headers  th {
     border-right: 2px solid #706e6e47;
     background: rgba(129, 128, 128, 0.6);
-    padding: 10px;
+    padding: 10px 0;
 }
 
 .headers th:first-child {
@@ -29,6 +33,7 @@ table {
 }
 
 .body {
+    height: 170px;
     border-bottom: 1px solid #646363;
 }
 
@@ -41,12 +46,11 @@ table {
 }
 
 .body td:last-child {
-    /*background: rgba(189, 187, 187, 0.5);*/
     border-right: .5px solid #706e6e47;
 }
 
 img {
-    max-width: 100%;
+    max-width: 92%;
     height: auto;
 }
 

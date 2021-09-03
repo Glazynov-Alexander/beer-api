@@ -1,7 +1,9 @@
 .beer {
     display: flex;
 }
-
+.beer > img {
+    height: 600px;
+}
 .description {
     width: 400px;
     margin-left: 150px;
@@ -13,6 +15,25 @@
     align-items: center;
     text-align: center;
 }
+
 .description div h3{
     margin-right: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .beer > img {
+        width: 200px;
+        margin: auto;
+    }
+    .beer {
+        flex-direction: column;
+    }
+    .description {
+        width: 90%;
+        margin-left: 15px;
+        font-size: 14px;
+    }
+    .description div span {
+        max-width: 235px;
+    }
 }

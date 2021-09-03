@@ -1,6 +1,21 @@
 .Main {
     text-align: center;
     margin: 20px auto;
-    width: 80%;
+    width: 90%;
 }
 
+@media screen and (max-width: 600px) {
+    .Main {
+        width: 100%;
+        margin: 5px;
+    }
+    table {
+        width: 100%;
+    }
+    table td::before {
+        content: attr(label);
+        font-weight: bold;
+        width: 120px;
+        min-width: 120px;
+    }
+}
