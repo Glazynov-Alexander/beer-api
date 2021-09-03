@@ -12,7 +12,7 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
   const history = useHistory();
   const [filters, setFilters] = useState({ ...query });
   const [sorting, setSorter] = useState("");
-
+    const pageQuery = {...query}
   const fields = [
     "abv_gt",
     "das",
@@ -43,7 +43,6 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
   };
 
   useEffect(() => {
-    setSorter("");
     setFilters({...filters, per_page:query.per_page || 25})
     setSorter("")
       //eslint-disable-next-line
@@ -77,6 +76,7 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
         width="80%"
         height="400px"
       />
+
       <Filters
         filters={filters}
         fields={fields}
@@ -88,9 +88,9 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
         rowsPerPageOptions={[5, 10, 25]}
         count={500}
         beers={beers}
-        rowsPerPage={+query["per_page"] || 25}
-        page={+query.page || 1}
-        onRowsPerPageChange={(e) => setQuery("per_page", e)}
+        rowsPerPage={+pageQuery["per_page"] || 25}
+        getBeers={getBeers}
+        page={+pageQuery.page || 1}
         setQuery={setQuery}
       />
 
@@ -105,9 +105,7 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
           </tr>
         </thead>
         <tbody>
-          {beers.length &&
-            beers.map((item) => {
-              return (
+          { beers.map((item) => (
                 <tr className={"body"} key={item.id + item.name}>
                   <td>
                     <h3>{item.name}</h3>
@@ -115,7 +113,7 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
                   <td>{item.tagline}</td>
                   <td style={{ padding: 15 }}>
                     <img
-                      onClick={() => history.push(`/beerId=${item.id}`)}
+                      onClick={() => history.push(`beer-api/beerId=${item.id}`)}
                       width={500}
                       height={500}
                       src={item.image_url}
@@ -124,8 +122,7 @@ function TableBeers({ beers, query, setQuery, getBeers, setBeers, setQueryState 
                   </td>
                   <td>{item.abv}</td>
                 </tr>
-              );
-            })}
+              ))}
         </tbody>
       </table>
     </div>

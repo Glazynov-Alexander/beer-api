@@ -7,15 +7,17 @@ function Pagination({
   page,
   beers,
   setQuery,
-  rowsPerPageOptions,
-  onRowsPerPageChange,
+  getBeers,
+  filters,
+  rowsPerPageOptions
 }) {
 
   const [show, changeShow] = useState(false)
 
-  const setPerPage = (row) => {
+  const setPerPage = (field, row) => {
       changeShow(false)
-      onRowsPerPageChange(row)
+      setQuery(field, row)
+      getBeers({...filters, [field]: row})
   }
 
   const pages = Array.from(
@@ -23,27 +25,26 @@ function Pagination({
     (_, i) => i + 1
   );
 
-    // eslint-disable-next-line array-callback-return
+  // eslint-disable-next-line array-callback-return
   return pages.map((item) => {
     if (item === page) {
       const backPage = item - 1;
       const nextPage = item + 1;
+
       return (
         <div key={item} className={"pagination"}>
             <div className={"perPages"}>
                 <div onClick={() => changeShow(!show)} className={"nowPerPage"}>{rowsPerPage}</div>
                 <div className={"listPerPages"}>
-                    {show && rowsPerPageOptions.map((row) => {
-                        return (
-                            <div key={row} onClick={() => setPerPage(row)}>
+                    {show && rowsPerPageOptions.map((row) =>  (
+                            <div key={row} onClick={() => setPerPage("per_page", row)}>
                                 {row}
                             </div>
-                        );
-                    })}
+                        ))}
                 </div>
             </div>
           {!!backPage && (
-            <button style={{width: 30, height: 30, margin: 5}} onClick={() => setQuery("page", backPage)}>
+            <button style={{width: 30, height: 30, margin: 5}} onClick={() => setPerPage("page", backPage)}>
               {backPage}
             </button>
           )}
@@ -52,7 +53,7 @@ function Pagination({
             {item}
           </button>
           {nextPage <= pages.length && beers.length === rowsPerPage && (
-            <button style={{width: 30, height: 30, margin: 5}} onClick={() => setQuery("page", nextPage)}>
+            <button style={{width: 30, height: 30, margin: 5}} onClick={() => setPerPage("page", nextPage)}>
               {nextPage}
             </button>
           )}

@@ -13,3 +13,6 @@
     align-items: center;
     text-align: center;
 }
+.description div h3{
+    margin-right: 10px;
+}

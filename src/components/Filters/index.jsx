@@ -1,8 +1,7 @@
 import React from "react";
 import "./styles.css"
 
-const Filters = ({setValueFilter, filters, getBeers, fields}) => {
-    return (
+const Filters = ({setValueFilter, filters, getBeers, fields}) => (
         <div>
             <div className="filters">
                 {fields.map((field) => (
@@ -18,9 +17,8 @@ const Filters = ({setValueFilter, filters, getBeers, fields}) => {
                         />
                     ))}
             </div>
-            <button className={"submit"} onClick={() => getBeers(filters)}>Filter</button>
+            <button className={"submit"} onClick={() => getBeers({...filters, page:1})}>Filter</button>
         </div>
     )
-}
 
 export default Filters

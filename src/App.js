@@ -22,13 +22,13 @@ function App() {
       queries.page = "1";
     }
     setQueryState(queries);
-    getBeers(queries);
     history.replace("?" + stringify(queries));
   };
 
   const getBeers = (filters = {}) => {
-    history.replace("?" + stringify({ ...query, ...filters }));
-    get(`/v2/beers`, {}, { ...query, ...filters }).then((beers) => {
+      setQueryState({ ...query, ...filters });
+      history.replace("?" + stringify({ ...query, ...filters }));
+      get(`/v2/beers`, {}, { ...query, ...filters }).then((beers) => {
       if (beers) {
         setBeers(beers);
       }
@@ -42,10 +42,7 @@ function App() {
 
   return (
     <div className="Main">
-      <Route exact path={"/:beerId"}>
-        <Beer id={history.location.pathname.replace("/beerId=", "")} />
-      </Route>
-      <Route exact path={"/"}>
+      <Route exact path={"/beer-api"}>
         {beers.length ? (
           <TableBeers
             setBeers={setBeers}
@@ -56,8 +53,11 @@ function App() {
             setQuery={setQuery}
           />
         ) : (
-          <div>beers none <a href="/">initial</a></div>
+          <div>beers none <a href={"/beer-api"}>initial</a></div>
         )}
+      </Route>
+      <Route path={"/beer-api/:beerId"}>
+          <Beer />
       </Route>
     </div>
   );

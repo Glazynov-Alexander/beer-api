@@ -18,7 +18,7 @@ function call(url, method, body, params) {
     url = url + "?" + stringify(params);
   }
 
-  return fetch(url, options)
+  return fetch("https://api.punkapi.com" + url, options)
     .then((response) => {
       if (response.status === 200) {
         return response.json();
