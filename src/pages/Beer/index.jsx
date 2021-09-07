@@ -3,15 +3,17 @@ import { get } from "../../api";
 import { useHistory } from "react-router-dom";
 import "./styles.css"
 
-function Beer() {
+function Beer({loading, setLoading}) {
   const history = useHistory();
   const [beer, setBeer] = useState([]);
   const id = history.location.pathname.replace("/beer-api/beerId=", "");
 
   useEffect(() => {
     if (id) {
+      setLoading(true)
       get(`/v2/beers/${id}`).then((beers) => {
         if (beers) {
+          setLoading(false)
           setBeer(beers);
         }
       });
@@ -19,7 +21,7 @@ function Beer() {
     // eslint-disable-next-line
   }, []);
 
-  return beer.map((item) => (
+  return loading ? <div>loading...</div> : beer.map((item) => (
       <div className={"beer"} key={item.id}>
         <img width={200} src={item.image_url} alt={item.name} />
         <div className={"description"}>

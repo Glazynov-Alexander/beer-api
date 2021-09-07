@@ -48,11 +48,6 @@ function TableBeers({ beers, query, getBeers, setBeers, setQueryState }) {
       //eslint-disable-next-line
   }, [query]);
 
-  useEffect(() => {
-      getBeers(query);
-      //eslint-disable-next-line
-  }, []);
-
   const setValueFilter = useCallback(
     (field, value) => {
       if (value) {
@@ -74,7 +69,6 @@ function TableBeers({ beers, query, getBeers, setBeers, setQueryState }) {
   const handler = function (e, events, chart) {
       const parts = e.targetID.split("#");
       if(parts.includes("bar")) {
-          console.log("parts", parts)
           let idx = parts[parts.indexOf("bar") + 2];
           idx = parseInt(idx);
           beers[idx] && history.push(`/beer-api/beerId=${beers[idx].id}`);
@@ -130,7 +124,7 @@ function TableBeers({ beers, query, getBeers, setBeers, setQueryState }) {
           <tr>
             <th width={250}>Name</th>
             <th width={250}>Tagline</th>
-            <th width={80}>Photo</th>
+            <th width={90}>Photo</th>
             <th width={75}>ABV</th>
           </tr>
         </thead>

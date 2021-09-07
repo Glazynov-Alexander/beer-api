@@ -67,3 +67,16 @@ img {
     transform: rotate(360deg);
     fill: #f5ab24;
 }
+
+@media screen and (max-width: 600px) {
+    .headers  th {
+        width: 250px;
+    }
+    .headers  th:first-child {
+        width: 250px;
+    }
+    .headers  th:nth-child(2) {
+        width: 250px;
+    }
+
+}
